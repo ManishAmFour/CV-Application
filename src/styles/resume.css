@@ -1,0 +1,8 @@
+.resume-div {
+  height: 800px;
+  width: 700px;
+  position: fixed;
+  top: 0px;
+
+  background-color: aquamarine;
+}
