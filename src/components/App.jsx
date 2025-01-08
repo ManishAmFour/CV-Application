@@ -8,6 +8,14 @@ function InputGen(props) {
 
   function ChangeState(value) {
     setInputValue(value);
+    if (props.onChangeVar) {
+      props.ArrayValue.map((element, index) => {
+        if (props.indexNumber === index) {
+          console.log(element);
+          //props.onChangeVar([...props.ArrayValue, (element[index] = [value])]);
+        }
+      });
+    }
   }
 
   return (
@@ -24,27 +32,34 @@ function InputGen(props) {
 }
 
 function InputDetails() {
+  const [valueTransfer, setValueTransfer] = useState([
+    ["name-Input", ""],
+    ["number-Input", ""],
+    ["mail-Input", ""],
+    ["school-Input", ""],
+    ["study-Input", ""],
+    ["date-Input", ""],
+    ["company-Input", ""],
+    ["position-Input", ""],
+    ["compDate-Input", ""],
+  ]);
+
+  function changeTheValue(value) {
+    setValueTransfer(value);
+  }
+
   return (
     <div>
-      <div className="general-information">
-        <a>general information</a>
-        <InputGen className={"name-input"} />
-        <InputGen className={"number-input"} />
-        <InputGen className={"mail-input"} />
-      </div>
-      <div className="education-exp">
-        <a>education</a>
-        <InputGen className={"school-input"} />
-        <InputGen className={"study-input"} />
-        <InputGen className={"date-input"} />
-      </div>
-      <div className="work-exp">
-        <a>work expo</a>
-        <InputGen className={"Company-input"} />
-        <InputGen className={"position-input"} />
-        <InputGen className={"CompDate-input"} />
-      </div>
-      <ResumeGenerator />
+      {valueTransfer.map((element, index) => (
+        <InputGen
+          key={index}
+          className={element[0]}
+          indexNumber={index}
+          ArrayValue={valueTransfer}
+          onChangeVar={changeTheValue}
+        />
+      ))}
+      <ResumeGenerator arrayClass={valueTransfer} />
     </div>
   );
 }
