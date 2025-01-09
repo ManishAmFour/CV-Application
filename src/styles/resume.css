@@ -1,38 +1,57 @@
 .resume-div {
   height: 850px;
-  width: 750px;
+  width: 800px;
   position: fixed;
   top: 0px;
-  margin-left: 180px;
 
   background-color: aquamarine;
 }
 
 .resume-personal-div {
   font-size: 33px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   background-color: aqua;
   height: 100px;
 }
 
 .resume-info {
   color: antiquewhite;
-  top: 30px;
   display: flex;
-  justify-content: space-between;
+  column-gap: 10px;
   left: 0px;
-  font-size: 17px;
+  font-size: 13.5px;
 }
 
-.resume-address {
-  position: absolute;
-}
-
-.resume-email {
-  left: 300px;
-  position: absolute;
-}
-
+.resume-address,
+.resume-email,
 .resume-phone {
-  left: 600px;
+  display: flex;
+  color: brown;
+}
+
+.resume-education {
+  font-size: 25px;
+  margin-top: 10px;
+  height: 200px;
+  background-color: rgba(255, 228, 196, 0.679);
+}
+
+.college-info {
   position: absolute;
+  display: flex;
+  font-size: 18px;
+  column-gap: 60px;
+  margin-left: 20px;
+}
+
+.college-info-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.college-date-div {
+  display: flex;
+  flex-direction: column;
 }

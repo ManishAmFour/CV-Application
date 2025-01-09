@@ -13,7 +13,6 @@ function InputGen(props) {
         if (props.indexNumber === index) {
           element[1] = value;
           props.onChangeVar([...props.ArrayValue]);
-          //props.onChangeVar([...props.ArrayValue, (element[index] = [value])]);
         }
       });
     }
@@ -32,22 +31,40 @@ function InputGen(props) {
   );
 }
 
+function ProfessionalExp(props) {
+  function callingTheFunc() {
+    console.log(document.querySelector(`${props.docName}`));
+  }
+
+  return (
+    <>
+      <button onClick={callingTheFunc} className="exp-button">
+        Add Experience
+      </button>
+    </>
+  );
+}
+
 function InputDetails() {
   const [valueTransfer, setValueTransfer] = useState([
-    ["Full-name", ""],
-    ["Email", ""],
-    ["Phone-number", ""],
-    ["Address", ""],
-    ["School", ""],
-    ["start-date", ""],
-    ["end-date", ""],
-    ["company-Name", ""],
-    ["Position-role", ""],
-    ["serving-period", ""],
+    ["Full-name", "Manish Tewatia"],
+    ["Email", "ManishTewatXXXXXX@gmail.com"],
+    ["Phone-number", "8272867XXX"],
+    ["Address", "C-83 Kishan Pura Modinagar,Ghaziabad"],
+    ["college-name", "Galgotias College Of Engineering"],
+    ["start-date", "30/oct/2023"],
+    ["end-date", "30/oct/2027"],
+    ["college-location", "Noida,Gautam Budh Nagar"],
+    ["college-degree", "Btech"],
+    ["professional-exp", ""],
   ]);
 
   function changeTheValue(value) {
     setValueTransfer(value);
+  }
+
+  function setUpTheNoOfExp(value) {
+    console.log(value);
   }
 
   return (
@@ -56,17 +73,28 @@ function InputDetails() {
         <i>Personal Details</i>
 
         {valueTransfer.map((element, index) => {
-          return (
-            <div className={element[0]} key={index}>
-              {element[0]}
-              <InputGen
-                className={element[0]}
-                indexNumber={index}
-                ArrayValue={valueTransfer}
-                onChangeVar={changeTheValue}
-              />
-            </div>
-          );
+          if (element[0] === "professional-exp") {
+            return (
+              <div key={index}>
+                <ProfessionalExp
+                  docName={element[0]}
+                  consoleFunction={setUpTheNoOfExp}
+                />
+              </div>
+            );
+          } else {
+            return (
+              <div className={element[0]} key={index}>
+                {element[0]}
+                <InputGen
+                  className={element[0]}
+                  indexNumber={index}
+                  ArrayValue={valueTransfer}
+                  onChangeVar={changeTheValue}
+                />
+              </div>
+            );
+          }
         })}
       </div>
       <ResumeGenerator arrayClass={valueTransfer} />

@@ -48,14 +48,21 @@
 .Email,
 .Phone-number,
 .Address,
-.School,
+.college-name,
 .start-date,
 .end-date,
 .company-Name,
 .Position-role,
-.serving-period {
+.serving-period,
+.college-location,
+.college-degree {
   display: flex;
   justify-content: space-between;
+}
+
+.exp-button {
+  position: absolute;
+  left: 0px;
 }
 
 .card {
