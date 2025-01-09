@@ -1,8 +1,38 @@
 .resume-div {
-  height: 800px;
-  width: 700px;
+  height: 850px;
+  width: 750px;
   position: fixed;
   top: 0px;
+  margin-left: 180px;
 
   background-color: aquamarine;
+}
+
+.resume-personal-div {
+  font-size: 33px;
+  background-color: aqua;
+  height: 100px;
+}
+
+.resume-info {
+  color: antiquewhite;
+  top: 30px;
+  display: flex;
+  justify-content: space-between;
+  left: 0px;
+  font-size: 17px;
+}
+
+.resume-address {
+  position: absolute;
+}
+
+.resume-email {
+  left: 300px;
+  position: absolute;
+}
+
+.resume-phone {
+  left: 600px;
+  position: absolute;
 }
