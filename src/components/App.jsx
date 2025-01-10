@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ResumeGenerator from "./resume";
 import "../styles/App.css";
-import { first } from "lodash";
+import { first, map } from "lodash";
 
 function InputGen(props) {
   const [inputValue, setInputValue] = useState("");
@@ -10,8 +10,17 @@ function InputGen(props) {
     setInputValue(value);
     props.ArrayValue.map((element, index) => {
       if (props.indexNumber === index) {
-        element[1] = value;
-        props.onChangeVar([...props.ArrayValue]);
+        if (props.indexNumber !== 9) {
+          element[1] = value;
+          props.onChangeVar([...props.ArrayValue]);
+        } else {
+          element[1][element[1].length - 1].map((individual, index2) => {
+            if (index2 === props.profInputValue) {
+              individual = value;
+              props.onChangeVar([...props.ArrayValue]);
+            }
+          });
+        }
       }
     });
   }
@@ -34,6 +43,10 @@ function ProfessionalExp(props) {
 
   function buttonClickedFunction() {
     setButtonClicked(!buttonClicked);
+    if (!buttonClicked) {
+      props.ArrayValue[9][1].push(["", "", "", "", ""]);
+      props.onChangeVar([...props.ArrayValue]);
+    }
   }
 
   return (
@@ -45,30 +58,35 @@ function ProfessionalExp(props) {
             indexNumber={props.indexNumber}
             ArrayValue={props.ArrayValue}
             onChangeVar={props.onChangeVar}
+            profInputValue={0}
           />
           <InputGen
             className={props.className}
             indexNumber={props.indexNumber}
             ArrayValue={props.ArrayValue}
             onChangeVar={props.onChangeVar}
+            profInputValue={1}
           />
           <InputGen
             className={props.className}
             indexNumber={props.indexNumber}
             ArrayValue={props.ArrayValue}
             onChangeVar={props.onChangeVar}
+            profInputValue={2}
           />
           <InputGen
             className={props.className}
             indexNumber={props.indexNumber}
             ArrayValue={props.ArrayValue}
             onChangeVar={props.onChangeVar}
+            profInputValue={3}
           />
           <InputGen
             className={props.className}
             indexNumber={props.indexNumber}
             ArrayValue={props.ArrayValue}
             onChangeVar={props.onChangeVar}
+            profInputValue={4}
           />
           <button onClick={buttonClickedFunction} className="save-button">
             Save
@@ -93,7 +111,7 @@ function InputDetails() {
     ["end-date", "30/oct/2027"],
     ["college-location", "Noida,Gautam Budh Nagar"],
     ["college-degree", "Btech"],
-    ["professional-exp", ["", "", "", "", ""]],
+    ["professional-exp", []],
   ]);
 
   function changeTheValue(value) {
