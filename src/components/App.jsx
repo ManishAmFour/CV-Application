@@ -8,14 +8,12 @@ function InputGen(props) {
 
   function ChangeState(value) {
     setInputValue(value);
-    if (props.onChangeVar) {
-      props.ArrayValue.map((element, index) => {
-        if (props.indexNumber === index) {
-          element[1] = value;
-          props.onChangeVar([...props.ArrayValue]);
-        }
-      });
-    }
+    props.ArrayValue.map((element, index) => {
+      if (props.indexNumber === index) {
+        element[1] = value;
+        props.onChangeVar([...props.ArrayValue]);
+      }
+    });
   }
 
   return (
@@ -32,16 +30,55 @@ function InputGen(props) {
 }
 
 function ProfessionalExp(props) {
-  function callingTheFunc() {
-    console.log(document.querySelector(`${props.docName}`));
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  function buttonClickedFunction() {
+    setButtonClicked(!buttonClicked);
   }
 
   return (
-    <>
-      <button onClick={callingTheFunc} className="exp-button">
-        Add Experience
-      </button>
-    </>
+    <div>
+      {buttonClicked ? (
+        <div>
+          <InputGen
+            className={props.className}
+            indexNumber={props.indexNumber}
+            ArrayValue={props.ArrayValue}
+            onChangeVar={props.onChangeVar}
+          />
+          <InputGen
+            className={props.className}
+            indexNumber={props.indexNumber}
+            ArrayValue={props.ArrayValue}
+            onChangeVar={props.onChangeVar}
+          />
+          <InputGen
+            className={props.className}
+            indexNumber={props.indexNumber}
+            ArrayValue={props.ArrayValue}
+            onChangeVar={props.onChangeVar}
+          />
+          <InputGen
+            className={props.className}
+            indexNumber={props.indexNumber}
+            ArrayValue={props.ArrayValue}
+            onChangeVar={props.onChangeVar}
+          />
+          <InputGen
+            className={props.className}
+            indexNumber={props.indexNumber}
+            ArrayValue={props.ArrayValue}
+            onChangeVar={props.onChangeVar}
+          />
+          <button onClick={buttonClickedFunction} className="save-button">
+            Save
+          </button>
+          <button className="delete-button">Delete</button>
+        </div>
+      ) : (
+        <button onClick={buttonClickedFunction}>Add experience</button>
+      )}
+    </div>
   );
 }
 
@@ -56,15 +93,11 @@ function InputDetails() {
     ["end-date", "30/oct/2027"],
     ["college-location", "Noida,Gautam Budh Nagar"],
     ["college-degree", "Btech"],
-    ["professional-exp", ""],
+    ["professional-exp", ["", "", "", "", ""]],
   ]);
 
   function changeTheValue(value) {
     setValueTransfer(value);
-  }
-
-  function setUpTheNoOfExp(value) {
-    console.log(value);
   }
 
   return (
@@ -77,8 +110,10 @@ function InputDetails() {
             return (
               <div key={index}>
                 <ProfessionalExp
-                  docName={element[0]}
-                  consoleFunction={setUpTheNoOfExp}
+                  className={element[0]}
+                  indexNumber={index}
+                  ArrayValue={valueTransfer}
+                  onChangeVar={changeTheValue}
                 />
               </div>
             );
