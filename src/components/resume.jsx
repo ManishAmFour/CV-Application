@@ -39,15 +39,22 @@ export default function ResumeGenerator(props) {
           </div>
         </div>
         <div className="resume-professionalExp">
-          <a>Professional Exp</a>
+          <a className="professional-name">Professional Exp</a>
           {props.arrayClass[9][1].map((indElement, index) => {
             return (
               <div className="job-description" key={index}>
-                <div className="company-name">{indElement[0]}</div>
-                <div className="position-name">{indElement[1]}</div>
-                <div className="starting-date">{indElement[2]}</div>
-                <div className="last-date">{indElement[3]}</div>
-                <div className="location">{indElement[4]}</div>
+                <div className="job-info-details">
+                  <div className="serving-date">
+                    <span className="starting-date">{indElement[2]}</span>
+                    {"  "}
+                    <span className="last-date">{indElement[3]}</span>
+                  </div>
+                  <a className="location">{indElement[4]}</a>
+                </div>
+                <div className="role-description">
+                  <a className="company-name">{indElement[0]}</a>
+                  <a className="position-name">{indElement[1]}</a>
+                </div>
               </div>
             );
           })}

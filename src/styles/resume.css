@@ -1,10 +1,14 @@
+a {
+  color: black;
+}
+
 .resume-div {
-  height: 850px;
   width: 800px;
   position: fixed;
-  top: 0px;
-
-  background-color: aquamarine;
+  top: 20px;
+  min-height: 900px;
+  background-color: white;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .resume-personal-div {
@@ -12,12 +16,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: aqua;
+  background-color: black;
   height: 100px;
 }
 
 .resume-info {
-  color: antiquewhite;
   display: flex;
   column-gap: 10px;
   left: 0px;
@@ -27,20 +30,25 @@
 .resume-address,
 .resume-email,
 .resume-phone {
+  margin-top: 10px;
+  font-weight: bold;
   display: flex;
-  color: brown;
+  color: white;
 }
 
 .resume-education {
   font-size: 25px;
+  max-height: 40px;
   margin-top: 10px;
+
   height: 200px;
-  background-color: rgba(255, 228, 196, 0.679);
+  background-color: rgba(0, 0, 0, 0.709);
 }
 
 .college-info {
   position: absolute;
   display: flex;
+  margin-top: 25px;
   font-size: 18px;
   column-gap: 60px;
   margin-left: 20px;
@@ -52,6 +60,50 @@
 }
 
 .college-date-div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.resume-name {
+  font-weight: bold;
+  color: white;
+}
+
+.resume-professionalExp {
+  margin-top: 150px;
+}
+
+.education-name {
+  color: white;
+
+  font-weight: normal;
+}
+
+.job-description {
+  margin-left: 20px;
+}
+
+.serving-date {
+  color: black;
+}
+
+.professional-name {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.709);
+  color: white;
+  font-size: 25px;
+}
+
+.college-name {
+  font-weight: bold;
+}
+
+.company-name {
+  font-weight: bold;
+}
+
+.role-description {
   display: flex;
   flex-direction: column;
 }

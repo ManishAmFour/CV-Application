@@ -16,7 +16,7 @@ function InputGen(props) {
         } else {
           element[1][element[1].length - 1].forEach((individual, index2) => {
             if (index2 === props.profInputValue) {
-              element[1][element[1].length - 1][index2] = value; // Modify the original array element
+              element[1][element[1].length - 1][index2] = value;
               props.onChangeVar([...props.ArrayValue]);
             }
           });
@@ -25,29 +25,40 @@ function InputGen(props) {
     });
   }
 
+  let inputType =
+    props.className === "start-date" || props.className === "end-date"
+      ? "date"
+      : "text";
+
+  let lengthInsideInput = props.className === "Phone-number" ? 10 : 25;
+  props.className === "start-date" || props.className === "end-date"
+    ? "date"
+    : "text";
+
   return (
-    <>
+    <div>
       <input
-        className={props.className}
         value={inputValue}
+        type={inputType}
+        maxLength={lengthInsideInput}
         onChange={(e) => {
           ChangeState(e.target.value);
         }}
       />
-    </>
+    </div>
   );
 }
 
 function ProfessionalExp(props) {
   const [buttonClicked, setButtonClicked] = useState(false);
 
-  function buttonClickedFunction(deleteValue) {
+  function buttonClickedFunction(value) {
     setButtonClicked(!buttonClicked);
     if (!buttonClicked) {
       props.ArrayValue[9][1].push(["", "", "", "", ""]);
       props.onChangeVar([...props.ArrayValue]);
     }
-    if (buttonClicked) {
+    if (buttonClicked && value === true) {
       props.ArrayValue[9][1].splice(props.ArrayValue[9][1].length - 1, 1);
       props.onChangeVar([...props.ArrayValue]);
     }
@@ -56,51 +67,78 @@ function ProfessionalExp(props) {
   return (
     <div>
       {buttonClicked ? (
-        <div>
-          <InputGen
-            className={props.className}
-            indexNumber={props.indexNumber}
-            ArrayValue={props.ArrayValue}
-            onChangeVar={props.onChangeVar}
-            profInputValue={0}
-          />
-          <InputGen
-            className={props.className}
-            indexNumber={props.indexNumber}
-            ArrayValue={props.ArrayValue}
-            onChangeVar={props.onChangeVar}
-            profInputValue={1}
-          />
-          <InputGen
-            className={props.className}
-            indexNumber={props.indexNumber}
-            ArrayValue={props.ArrayValue}
-            onChangeVar={props.onChangeVar}
-            profInputValue={2}
-          />
-          <InputGen
-            className={props.className}
-            indexNumber={props.indexNumber}
-            ArrayValue={props.ArrayValue}
-            onChangeVar={props.onChangeVar}
-            profInputValue={3}
-          />
-          <InputGen
-            className={props.className}
-            indexNumber={props.indexNumber}
-            ArrayValue={props.ArrayValue}
-            onChangeVar={props.onChangeVar}
-            profInputValue={4}
-          />
-          <button onClick={buttonClickedFunction} className="save-button">
+        <div className="job-input-description">
+          <div className="input-company-name">
+            Company Name
+            <InputGen
+              className={props.className}
+              indexNumber={props.indexNumber}
+              ArrayValue={props.ArrayValue}
+              onChangeVar={props.onChangeVar}
+              profInputValue={0}
+            />
+          </div>
+          <div className="input-company-name">
+            Job position
+            <InputGen
+              className={props.className}
+              indexNumber={props.indexNumber}
+              ArrayValue={props.ArrayValue}
+              onChangeVar={props.onChangeVar}
+              profInputValue={1}
+            />
+          </div>
+          <div className="input-company-name">
+            Starting Date
+            <InputGen
+              className={"start-date"}
+              indexNumber={props.indexNumber}
+              ArrayValue={props.ArrayValue}
+              onChangeVar={props.onChangeVar}
+              profInputValue={2}
+            />
+          </div>
+          <div className="input-company-name">
+            Last Date
+            <InputGen
+              className={"end-date"}
+              indexNumber={props.indexNumber}
+              ArrayValue={props.ArrayValue}
+              onChangeVar={props.onChangeVar}
+              profInputValue={3}
+            />
+          </div>
+          <div className="input-company-name">
+            Job Location
+            <InputGen
+              className={props.className}
+              indexNumber={props.indexNumber}
+              ArrayValue={props.ArrayValue}
+              onChangeVar={props.onChangeVar}
+              profInputValue={4}
+            />
+          </div>
+
+          <button
+            onClick={buttonClickedFunction}
+            className="input-control-button save-button"
+          >
             Save
           </button>
-          <button onClick={buttonClickedFunction} className="delete-button">
+          <button
+            onClick={() => {
+              let valueTransefferd = true;
+              buttonClickedFunction(valueTransefferd);
+            }}
+            className="input-control-button delete-button"
+          >
             Delete
           </button>
         </div>
       ) : (
-        <button onClick={buttonClickedFunction}>Add experience</button>
+        <button className="add-desc-button" onClick={buttonClickedFunction}>
+          Add experience
+        </button>
       )}
     </div>
   );
@@ -115,7 +153,7 @@ function InputDetails() {
     ["college-name", "Galgotias College Of Engineering"],
     ["start-date", "30/oct/2023"],
     ["end-date", "30/oct/2027"],
-    ["college-location", "Noida,Gautam Budh Nagar"],
+    ["college-location", "Noida,Uttar Pradesh"],
     ["college-degree", "Btech"],
     ["professional-exp", []],
   ]);
@@ -143,7 +181,7 @@ function InputDetails() {
             );
           } else {
             return (
-              <div className={element[0]} key={index}>
+              <div className="upper-input-class" key={index}>
                 {element[0]}
                 <InputGen
                   className={element[0]}
