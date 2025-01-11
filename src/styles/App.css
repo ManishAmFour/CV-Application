@@ -71,3 +71,8 @@
 .name-input {
   position: absolute;
 }
+
+.job-description {
+  margin-top: 19px;
+  display: flex;
+}

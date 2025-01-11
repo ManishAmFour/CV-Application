@@ -14,9 +14,9 @@ function InputGen(props) {
           element[1] = value;
           props.onChangeVar([...props.ArrayValue]);
         } else {
-          element[1][element[1].length - 1].map((individual, index2) => {
+          element[1][element[1].length - 1].forEach((individual, index2) => {
             if (index2 === props.profInputValue) {
-              individual = value;
+              element[1][element[1].length - 1][index2] = value; // Modify the original array element
               props.onChangeVar([...props.ArrayValue]);
             }
           });
@@ -41,10 +41,14 @@ function InputGen(props) {
 function ProfessionalExp(props) {
   const [buttonClicked, setButtonClicked] = useState(false);
 
-  function buttonClickedFunction() {
+  function buttonClickedFunction(deleteValue) {
     setButtonClicked(!buttonClicked);
     if (!buttonClicked) {
       props.ArrayValue[9][1].push(["", "", "", "", ""]);
+      props.onChangeVar([...props.ArrayValue]);
+    }
+    if (buttonClicked) {
+      props.ArrayValue[9][1].splice(props.ArrayValue[9][1].length - 1, 1);
       props.onChangeVar([...props.ArrayValue]);
     }
   }
@@ -91,7 +95,9 @@ function ProfessionalExp(props) {
           <button onClick={buttonClickedFunction} className="save-button">
             Save
           </button>
-          <button className="delete-button">Delete</button>
+          <button onClick={buttonClickedFunction} className="delete-button">
+            Delete
+          </button>
         </div>
       ) : (
         <button onClick={buttonClickedFunction}>Add experience</button>

@@ -2,7 +2,6 @@ import { Children } from "react";
 import "../styles/resume.css";
 
 export default function ResumeGenerator(props) {
-  console.log(props.arrayClass);
   return (
     <>
       <div className="resume-div">
@@ -38,6 +37,20 @@ export default function ResumeGenerator(props) {
               <a className="college-degree">{props.arrayClass[8][1]}</a>
             </div>
           </div>
+        </div>
+        <div className="resume-professionalExp">
+          <a>Professional Exp</a>
+          {props.arrayClass[9][1].map((indElement, index) => {
+            return (
+              <div className="job-description" key={index}>
+                <div className="company-name">{indElement[0]}</div>
+                <div className="position-name">{indElement[1]}</div>
+                <div className="starting-date">{indElement[2]}</div>
+                <div className="last-date">{indElement[3]}</div>
+                <div className="location">{indElement[4]}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
