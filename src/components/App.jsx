@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ResumeGenerator from "./resume";
 import "../styles/App.css";
-import { first, map } from "lodash";
+import _ from "lodash";
 
 function InputGen(props) {
   const [inputValue, setInputValue] = useState("");
