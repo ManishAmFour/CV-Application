@@ -3,10 +3,10 @@ a {
 }
 
 .resume-div {
-  width: 800px;
-  position: fixed;
   top: 20px;
   min-height: 900px;
+  max-width: 900px;
+  min-width: 800px;
   background-color: white;
   box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.75);
 }
@@ -48,20 +48,25 @@ a {
 .college-info {
   position: absolute;
   display: flex;
-  margin-top: 25px;
+  margin-top: 40px;
   font-size: 18px;
   column-gap: 60px;
-  margin-left: 20px;
 }
 
 .college-info-div {
   display: flex;
+  min-width: 300px;
   flex-direction: column;
+}
+
+.job-info-details {
+  min-width: 300px;
 }
 
 .college-date-div {
   display: flex;
-
+  min-width: 300px;
+  margin-left: 10px;
   flex-direction: column;
 }
 
@@ -81,7 +86,11 @@ a {
 }
 
 .job-description {
-  margin-left: 20px;
+  position: absolute;
+  display: flex;
+  margin-top: 40px;
+  font-size: 16px;
+  column-gap: 60px;
 }
 
 .serving-date {
@@ -105,5 +114,7 @@ a {
 
 .role-description {
   display: flex;
+  min-width: 300px;
   flex-direction: column;
 }
+

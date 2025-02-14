@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ResumeGenerator from "./resume";
 import "../styles/App.css";
-import _ from "lodash";
 
 function InputGen(props) {
   const [inputValue, setInputValue] = useState("");
@@ -62,13 +61,19 @@ function ProfessionalExp(props) {
       props.ArrayValue[9][1].splice(props.ArrayValue[9][1].length - 1, 1);
       props.onChangeVar([...props.ArrayValue]);
     }
+
+    if (props.inputValue === true) {
+      props.inputMan(false);
+    } else if (props.inputValue === false) {
+      props.inputMan(true);
+    }
   }
 
   return (
-    <div>
+    <>
       {buttonClicked ? (
-        <div className="job-input-description">
-          <div className="input-company-name">
+        <>
+          <div className="upper-input-class">
             Company Name
             <InputGen
               className={props.className}
@@ -78,7 +83,7 @@ function ProfessionalExp(props) {
               profInputValue={0}
             />
           </div>
-          <div className="input-company-name">
+          <div className="upper-input-class">
             Job position
             <InputGen
               className={props.className}
@@ -88,7 +93,7 @@ function ProfessionalExp(props) {
               profInputValue={1}
             />
           </div>
-          <div className="input-company-name">
+          <div className="upper-input-class">
             Starting Date
             <InputGen
               className={"start-date"}
@@ -98,7 +103,7 @@ function ProfessionalExp(props) {
               profInputValue={2}
             />
           </div>
-          <div className="input-company-name">
+          <div className="upper-input-class">
             Last Date
             <InputGen
               className={"end-date"}
@@ -108,7 +113,7 @@ function ProfessionalExp(props) {
               profInputValue={3}
             />
           </div>
-          <div className="input-company-name">
+          <div className="upper-input-class">
             Job Location
             <InputGen
               className={props.className}
@@ -134,13 +139,13 @@ function ProfessionalExp(props) {
           >
             Delete
           </button>
-        </div>
+        </>
       ) : (
         <button className="add-desc-button" onClick={buttonClickedFunction}>
           Add experience
         </button>
       )}
-    </div>
+    </>
   );
 }
 
@@ -158,13 +163,49 @@ function InputDetails() {
     ["professional-exp", []],
   ]);
 
+  const [inputValue, setInputValue] = useState(true);
+
   function changeTheValue(value) {
     setValueTransfer(value);
   }
 
   return (
     <>
-      <div className="input-div">
+      <div className="main-container">
+        {inputValue ? (
+          <div className="input-div">
+            <i>Personal Details</i>
+
+            {valueTransfer.map((element, index) => {
+              if (element[0] === "professional-exp") {
+                return (
+                  <div key={index}>
+                    <ProfessionalExp
+                      inputValue={inputValue}
+                      inputMan={setInputValue}
+                      className={element[0]}
+                      indexNumber={index}
+                      ArrayValue={valueTransfer}
+                      onChangeVar={changeTheValue}
+                    />
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="upper-input-class" key={index}>
+                    {element[0]}
+                    <InputGen
+                      className={element[0]}
+                      indexNumber={index}
+                      ArrayValue={valueTransfer}
+                      onChangeVar={changeTheValue}
+                    />
+                  </div>
+                );
+              }
+            })}
+          </div>
+        ) : <div className="input-div-full">
         <i>Personal Details</i>
 
         {valueTransfer.map((element, index) => {
@@ -172,6 +213,8 @@ function InputDetails() {
             return (
               <div key={index}>
                 <ProfessionalExp
+                  inputValue={inputValue}
+                  inputMan={setInputValue}
                   className={element[0]}
                   indexNumber={index}
                   ArrayValue={valueTransfer}
@@ -193,8 +236,10 @@ function InputDetails() {
             );
           }
         })}
+      </div>}
+
+        <ResumeGenerator arrayClass={valueTransfer} />
       </div>
-      <ResumeGenerator arrayClass={valueTransfer} />
     </>
   );
 }

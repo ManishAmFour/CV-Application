@@ -33,22 +33,48 @@
   }
 }
 
+.main-container {
+  display: flex;
+  column-gap: 40px;
+}
+
+
+
 .input-div {
   top: 100px;
-  position: fixed;
+  row-gap: 3px;
+  min-width: 400px;
+
   display: flex;
   flex-direction: column;
   left: 300px;
-  min-height: 300px;
-  width: 400px;
   background-color: white;
   box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.75);
   padding: 20px;
+  max-height: 320px;
+}
+
+.input-div-full {
+  top: 100px;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+  left: 300px;
+  background-color: white;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  max-height: 430px;
+}
+
+.input-control-button {
+  margin-top: 10px;
 }
 
 .upper-input-class {
   display: flex;
   color: black;
+  column-gap: 30px;
   justify-content: space-between;
 }
 
@@ -73,12 +99,6 @@
   margin-left: 30px;
 }
 
-.job-input-description {
-  display: flex;
-  flex-direction: column;
-  margin-top: 25px;
-}
-
 .add-desc-button {
   margin-top: 10px;
 }
@@ -86,10 +106,4 @@
 .input-company-name {
   display: flex;
   justify-content: space-between;
-}
-
-.input-control-button {
-  max-width: 90px;
-  margin-left: 150px;
-  margin-top: 10px;
 }
