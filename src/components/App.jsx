@@ -37,6 +37,7 @@ function InputGen(props) {
   return (
     <div>
       <input
+        className="input-bar-value-detail"
         value={inputValue}
         type={inputType}
         maxLength={lengthInsideInput}
@@ -205,38 +206,40 @@ function InputDetails() {
               }
             })}
           </div>
-        ) : <div className="input-div-full">
-        <i>Personal Details</i>
+        ) : (
+          <div className="input-div-full">
+            <i>Personal Details</i>
 
-        {valueTransfer.map((element, index) => {
-          if (element[0] === "professional-exp") {
-            return (
-              <div key={index}>
-                <ProfessionalExp
-                  inputValue={inputValue}
-                  inputMan={setInputValue}
-                  className={element[0]}
-                  indexNumber={index}
-                  ArrayValue={valueTransfer}
-                  onChangeVar={changeTheValue}
-                />
-              </div>
-            );
-          } else {
-            return (
-              <div className="upper-input-class" key={index}>
-                {element[0]}
-                <InputGen
-                  className={element[0]}
-                  indexNumber={index}
-                  ArrayValue={valueTransfer}
-                  onChangeVar={changeTheValue}
-                />
-              </div>
-            );
-          }
-        })}
-      </div>}
+            {valueTransfer.map((element, index) => {
+              if (element[0] === "professional-exp") {
+                return (
+                  <div key={index}>
+                    <ProfessionalExp
+                      inputValue={inputValue}
+                      inputMan={setInputValue}
+                      className={element[0]}
+                      indexNumber={index}
+                      ArrayValue={valueTransfer}
+                      onChangeVar={changeTheValue}
+                    />
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="upper-input-class" key={index}>
+                    {element[0]}
+                    <InputGen
+                      className={element[0]}
+                      indexNumber={index}
+                      ArrayValue={valueTransfer}
+                      onChangeVar={changeTheValue}
+                    />
+                  </div>
+                );
+              }
+            })}
+          </div>
+        )}
 
         <ResumeGenerator arrayClass={valueTransfer} />
       </div>

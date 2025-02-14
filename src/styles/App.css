@@ -53,6 +53,10 @@
   max-height: 320px;
 }
 
+.input-bar-value-detail {
+  color: black;
+}
+
 .input-div-full {
   top: 100px;
   min-width: 400px;
