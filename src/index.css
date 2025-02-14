@@ -13,9 +13,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+input {
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 2px;
+}
+
+
 body {
   margin: 0;
   display: flex;
+  background-color: white;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
